@@ -12,7 +12,7 @@ ENV SOURCE=http://dl.4players.de/ts/releases/3.0.13.8/teamspeak3-server_linux_am
     TS_NET_PORT_SERVERQUERY=10011 \
     # Query white/blacklist
     TS_QUERY_IP_WHITELIST=query_ip_whitelist.txt \
-    TS_QUERY_IP_BLACKLIST=query_ip_whitelist.txt \
+    TS_QUERY_IP_BLACKLIST=query_ip_blacklist.txt \
     # Database
     TS_DB_CLEAR_DATABASE=0 \
     TS_DB_PLUGIN=ts3db_sqlite3 \
