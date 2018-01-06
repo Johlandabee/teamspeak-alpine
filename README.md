@@ -22,6 +22,7 @@ You can use [docker volumes](https://docs.docker.com/engine/admin/volumes/volume
 
 ## Files and folders
 The image exposes the following mount points.
+
 | Volume       | Description                                                                                         |
 | ------------ |-----------------------------------------------------------------------------------------------------|
 | /app/config/ | The `ts3db_mysql.ini` file will be stored here besides your `license key`.                          |
