@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-glibc:latest
 LABEL MAINTAINER='Johlandabee <contact@jlndbe.me>' \
-      teamspeak.server.version=3.0.19.8
+      teamspeak.server.version=3.0.13.8
 
 ENV SOURCE=http://dl.4players.de/ts/releases/3.0.13.8/teamspeak3-server_linux_amd64-3.0.13.8.tar.bz2 \
     # Network
