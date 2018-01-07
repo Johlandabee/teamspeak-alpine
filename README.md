@@ -9,7 +9,7 @@ docker run -d --name teamspeak \
     -p 9987:9987/udp \
     -p 10011:10011/tcp \
     -p 30033:30033/tcp \
-    johlandabee/teamspeak-alpine:latest
+    jlndbe/teamspeak-alpine:latest
 ````
 # Administrator token
 You can get the administrator token by using the `docker logs` command.
@@ -25,7 +25,7 @@ The image exposes the following mount points.
 
 | Volume       | Description                                                                                         |
 | ------------ |-----------------------------------------------------------------------------------------------------|
-| /app/config/ | This is where the `license key` belongs.                          |
+| /app/config/ | This is where the `license key` belongs.                                                            |
 | /app/logs/   | This folder contains all Teamspeak log files.                                                       |
 | /app/files/  | Uploaded files will be stored here.                                                                 |
 | /app/db/     | If you use the SQLite driver (default), the database file `ts3server.sqlitedb` will be stored here. |
@@ -40,7 +40,7 @@ docker run -d --name teamspeak \
     -p 9987:9987/udp \
     -p 10011:10011/tcp \
     -p 30033:30033/tcp \
-    johlandabee/teamspeak-alpine:latest
+    jlndbe/teamspeak-alpine:latest
 ````
 
 ## MariaDB
@@ -58,7 +58,7 @@ docker run -d --name teamspeak \
     -e TS_DB_MYSQL_USERNAME=user \
     -e TS_DB_MYSQL_PASSWORD=pwd \
     -e TS_DB_MYSQL_DATABASE=teamspeak \
-    johlandabee/teamspeak-alpine:latest
+    jlndbe/teamspeak-alpine:latest
 ````
 **Hint:** If the default value of a environment variable matches your configuration, it can be omitted.
 
@@ -70,7 +70,7 @@ Here is a full [docker-compose](https://docs.docker.com/compose/overview/) examp
 version: '3'
 services:
   teamspeak:
-    image: johlandabee/teamspeak-alpine:latest
+    image: jlndbe/teamspeak-alpine:latest
     depends_on: 
       - mariadb
     ports:
@@ -110,7 +110,7 @@ docker run -d --name teamspeak \
     -p 9987:9987/udp \
     -p 10011:10011/tcp \
     -p 30033:30033/tcp \
-    johlandabee/teamspeak-alpine:latest
+    jlndbe/teamspeak-alpine:latest
 ````
 
 ## Building your own image

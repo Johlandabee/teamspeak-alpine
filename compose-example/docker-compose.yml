@@ -1,7 +1,7 @@
 version: '3'
 services:
   teamspeak:
-    image: johlandabee/teamspeak-alpine:latest
+    image: jlndbe/teamspeak-alpine:latest
     depends_on: 
       - mariadb
     ports:
