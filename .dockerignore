@@ -1,3 +1,4 @@
 \.vscode/
+compose-example/
 *.md
 !README.md
