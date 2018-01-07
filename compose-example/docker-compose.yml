@@ -1,0 +1,30 @@
+version: '3'
+services:
+  teamspeak:
+    image: johlandabee/teamspeak-alpine:latest
+    depends_on: 
+      - mariadb
+    ports:
+      - "9988:9987/udp"
+      - "10012:10011/tcp"
+      - "30034:30033/tcp"
+    volumes:
+      - /var/teamspeak/config/:/app/config
+      - teamspeak-logs:/app/logs/
+      - teamspeak-files:/app/files/
+    environment:
+      TS_DB_PLUGIN: ts3db_mariadb
+      TS_DB_MYSQL_PASSWORD: mypassword
+    entrypoint: dockerize -wait tcp://mariadb:3306 -timeout 20s /app/run.sh
+      
+  mariadb:
+    image: mariadb
+    environment: 
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: teamspeak
+      MYSQL_USER: teamspeak
+      MYSQL_PASSWORD: mypassword
+
+volumes:
+  teamspeak-logs:
+  teamspeak-files:
