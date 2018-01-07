@@ -14,7 +14,7 @@ services:
       - teamspeak-files:/app/files/
     environment:
       TS_DB_PLUGIN: ts3db_mariadb
-      TS_DB_MYSQL_PASSWORD: mypassword
+      TS_DB_MARIADB_PASSWORD: mypassword
     entrypoint: dockerize -wait tcp://mariadb:3306 -timeout 20s /app/run.sh
       
   mariadb:

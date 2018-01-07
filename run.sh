@@ -25,12 +25,12 @@ configFile="/app/$TS_DB_PLUGIN_PARAMETER"
 touch $configFile
 
 echo [config] >> $configFile
-echo host=$TS_DB_MYSQL_HOST >> $configFile
-echo port=$TS_DB_MYSQL_PORT >> $configFile
-echo username=$TS_DB_MYSQL_USERNAME >> $configFile
-echo password=$TS_DB_MYSQL_PASSWORD >> $configFile
-echo database=$TS_DB_MYSQL_DATABASE >> $configFile
-echo socket=$TS_DB_MYSQL_SOCKET >> $configFile
+echo host=$TS_DB_MARIADB_HOST >> $configFile
+echo port=$TS_DB_MARIADB_PORT >> $configFile
+echo username=$TS_DB_MARIADB_USERNAME >> $configFile
+echo password=$TS_DB_MARIADB_PASSWORD >> $configFile
+echo database=$TS_DB_MARIADB_DATABASE >> $configFile
+echo socket=$TS_DB_MARIADB_SOCKET >> $configFile
 
 echo "args:$args"
 ./ts3server_minimal_runscript.sh $args

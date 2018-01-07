@@ -1,4 +1,7 @@
 # teamspeak-alpine
+![](https://images.microbadger.com/badges/image/jlndbe/teamspeak-alpine.svg)
+![](https://images.microbadger.com/badges/version/jlndbe/teamspeak-alpine.svg)
+
 A alpine based customizable TeamSpeak 3 server image without much magic.  
 This image does **not** run tsdns.
 
@@ -53,11 +56,11 @@ docker run -d --name teamspeak \
     -p 10011:10011/tcp \
     -p 30033:30033/tcp \
     -e TS_DB_PLUGIN=ts3db_mariadb \
-    -e TS_DB_MYSQL_HOST=db.host.example \
-    -e TS_DB_MYSQL_PORT=3306 \
-    -e TS_DB_MYSQL_USERNAME=user \
-    -e TS_DB_MYSQL_PASSWORD=pwd \
-    -e TS_DB_MYSQL_DATABASE=teamspeak \
+    -e TS_DB_MARIADB_HOST=db.host.example \
+    -e TS_DB_MARIADB_PORT=3306 \
+    -e TS_DB_MARIADB_USERNAME=user \
+    -e TS_DB_MARIADB_PASSWORD=pwd \
+    -e TS_DB_MARIADB_DATABASE=teamspeak \
     jlndbe/teamspeak-alpine:latest
 ````
 **Hint:** If the default value of a environment variable matches your configuration, it can be omitted.
@@ -83,7 +86,7 @@ services:
       - teamspeak-files:/app/files/
     environment:
       TS_DB_PLUGIN: ts3db_mariadb
-      TS_DB_MYSQL_PASSWORD: mypassword
+      TS_DB_MARIADB_PASSWORD: mypassword
     entrypoint: dockerize -wait tcp://mariadb:3306 -timeout 20s /app/run.sh
       
   mariadb:
@@ -135,18 +138,18 @@ The following is based on the [Teamspeak 3 server quick start guide](http://medi
 | TS_QUERY_IP_WHITELIST    | query_ip_whitelist.txt     | The file containing whitelisted IP addresses for the ServerQuery interface. All hosts listed in this file will be ignored by the ServerQuery flood protection.                                                                                                                                      |
 | TS_QUERY_IP_BLACKLIST    | query_ip_blacklist.txt     | The file containing backlisted IP addresses for the ServerQuery interface. All hosts listed in this file are not allowed to connect to the ServerQuery interface.                                                                                                                                   |
 | TS_DB_CLEAR_DATABASE     | 0                          | If set to "1", the server database will be cleared before starting up the server. This is mainly used for testing. Usually this parameter should not be specified, so all server settings will be restored when the server process is restarted.                                                    |
-| TS_DB_PLUGIN             | ts3db_sqlite               | Name of the database plugin library used by the server instance. For example, if you want to start the server with MySQL support, simply set this parameter to `ts3db_mysql` to use the MySQL plugin. Do *NOT* specify the "lib" prefix or the file extension of the plugin.                        |
-| TS_DB_PLUGIN_PARAMETER   | ts3db_mariadb.ini          | A custom parameter passed to the database plugin library. For example, the MySQL database plugin supports a parameter to specify the physical path of the plugins onfiguration file.                                                                                                                |
+| TS_DB_PLUGIN             | ts3db_sqlite               | Name of the database plugin library used by the server instance. For example, if you want to start the server with MariaDB support, simply set this parameter to `ts3db_MariaDB` to use the MariaDB plugin. Do *NOT* specify the "lib" prefix or the file extension of the plugin.                        |
+| TS_DB_PLUGIN_PARAMETER   | ts3db_mariadb.ini          | A custom parameter passed to the database plugin library. For example, the MariaDB database plugin supports a parameter to specify the physical path of the plugins configuration file.                                                                                                                |
 | TS_DB_SQL_CREATE_PATH    | create_mariadb/            | The physical path where your SQL installation files are located. Note that this path will be added to the value of the "dbsqlpath" parameter.                                                                                                                                                       |
 | TS_DB_CONNECTIONS        | 10                         | The number of database connections used by the server. Please note that changing this value can have an affect on your servers performance. Possible values are 2-100.                                                                                                                              |
 | TS_DB_CLIENT_KEEP_DAYS   | 90                         | Defines how many days to keep unused client identities. Auto-pruning is triggered on every start and on every new month while the server is running.                                                                                                                                                |
 | TS_DB_LOG_KEEP_DAYS      | 90                         | Defines how many days to keep database log entries. Auto-pruning is triggered on every start and on every new month while the server is running.                                                                                                                                                    |
-| TS_DB_MYSQL_HOST         | mariadb                    | The hostname or IP addresss of your MySQL server.                                                                                                                                                                                                                                                   |
-| TS_DB_MYSQL_PORT         | 3306                       | The TCP port of your MySQL server.                                                                                                                                                                                                                                                                  |
-| TS_DB_MYSQL_USERNAME     | teamspeak                  | The username used to authenticate with your MySQL server.                                                                                                                                                                                                                                           |
-| TS_DB_MYSQL_PASSWORD     | <empty>                    | The password used to authenticate with your MySQL server.                                                                                                                                                                                                                                           |
-| TS_DB_MYSQL_DATABASE     | teamspeak                  | The name of a database on your MySQL server. Note that this database must be created before the TeamSpeak 3 Server is started.                                                                                                                                                                      |
-| TS_DB_MYSQL_SOCKET       | <empty>                    | The name of the Unix socket file to use, for connections made via a named pipe to a local server.                                                                                                                                                                                                   |
+| TS_DB_MARIADB_HOST         | mariadb                    | The hostname or IP addresses of your MariaDB server.                                                                                                                                                                                                                                                   |
+| TS_DB_MARIADB_PORT         | 3306                       | The TCP port of your MariaDB server.                                                                                                                                                                                                                                                                  |
+| TS_DB_MARIADB_USERNAME     | teamspeak                  | The username used to authenticate with your MariaDB server.                                                                                                                                                                                                                                           |
+| TS_DB_MARIADB_PASSWORD     | <empty>                    | The password used to authenticate with your MariaDB server.                                                                                                                                                                                                                                           |
+| TS_DB_MARIADB_DATABASE     | teamspeak                  | The name of a database on your MariaDB server. Note that this database must be created before the TeamSpeak 3 Server is started.                                                                                                                                                                      |
+| TS_DB_MARIADB_SOCKET       | <empty>                    | The name of the Unix socket file to use, for connections made via a named pipe to a local server.                                                                                                                                                                                                   |
 | TS_LOG_PATH              | logs/                      | The physical path where the server will create logfiles.                                                                                                                                                                                                                                            |
 | TS_LOG_APPEND            | 0                          | If set to "1", the server will not create a new logfile on every start. Instead, the log output will be appended to the previous logfile. The logfile name will only contain the ID of the virtual server.                                                                                          |
 | TS_LOG_QUERY_COMMANDS    | 1                          | If set to "1", the server will log every ServerQuery command executed by clients. This can be useful while trying to diagnose several different issues.                                                                                                                                             |
