@@ -1,6 +1,5 @@
 # teamspeak-alpine
-![](https://images.microbadger.com/badges/image/jlndbe/teamspeak-alpine.svg)
-![](https://images.microbadger.com/badges/version/jlndbe/teamspeak-alpine.svg)
+![](https://images.microbadger.com/badges/image/jlndbe/teamspeak-alpine:3.0.13.8.svg) ![](https://images.microbadger.com/badges/version/jlndbe/teamspeak-alpine:3.0.13.8.svg) ![](https://images.microbadger.com/badges/commit/jlndbe/teamspeak-alpine:3.0.13.8.svg) 
 
 A alpine based customizable TeamSpeak 3 server image without much magic.  
 This image does **not** run tsdns.
