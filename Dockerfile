@@ -1,5 +1,6 @@
 FROM frolvlad/alpine-glibc:latest
 
+ARG IMAGE_NAME
 ARG BUILD_DATE 
 ARG VCS_REF
 
@@ -7,7 +8,8 @@ ENV ARCH=amd64 \
     DOCKERIZE_VERSION=v0.6.0 \
     TEAMSPEAK_VERSION=3.0.13.8
 
-LABEL MAINTAINER="Johlandabee <contact@jlndbe.me>" \
+LABEL maintainer="Johlandabee <contact@jlndbe.me>" \
+    description="A alpine based customizable TeamSpeak 3 server image without much magic." \
     me.jlndbe.arch=${ARCH} \
     me.jlndbe.teamspeak-server-version=${TEAMSPEAK_VERSION} \
     me.jlndbe.dockerize-version=${DOCKERIZE_VERSION} \
