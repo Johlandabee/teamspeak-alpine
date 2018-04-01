@@ -5,8 +5,8 @@ ARG BUILD_DATE
 ARG VCS_REF
 
 ENV ARCH=amd64 \
-    DOCKERIZE_VERSION=v0.6.0 \
-    TEAMSPEAK_VERSION=3.0.13.8
+    DOCKERIZE_VERSION=v0.6.1 \
+    TEAMSPEAK_VERSION=3.1.1
 
 LABEL maintainer="Johlandabee <contact@jlndbe.me>" \
     description="A alpine based customizable TeamSpeak 3 server image without much magic." \
@@ -59,9 +59,10 @@ ENV PUID=1001 PGID=1001 \
 WORKDIR /app/
 COPY run.sh .
 RUN mkdir db/ config/ files/ logs/ \
-    # Install curl
+    # Install ca-certificates and curl
     && apk update \
-    && apk add --virtual .image-setup curl tar \
+    && apk add --no-cache ca-certificates \
+    && apk add --no-cache --virtual .image-setup curl tar \
     # Download Dockerize
     && curl -L ${DOCKERIZE_SOURCE} | tar xzC  /usr/local/bin \
     # Download Teamspeak binaries
@@ -77,7 +78,9 @@ RUN mkdir db/ config/ files/ logs/ \
     && rm -rf /var/cache/apk/* \
     # Create user and set permissions
     && addgroup -g ${PGID} app && adduser -D -u ${PUID} -G app app \
-    && chown -R app:app .
+    && chown -R app:app . \
+    # Accept server license
+    && touch .ts3server_license_accepted
 
 VOLUME [ "/app/logs", "/app/files", "/app/db", "/app/config" ]
 
